@@ -21,6 +21,7 @@
 html {
    scroll-behavior: smooth;
 }
+
 body {
    margin: 0;
    background: var(--bg);
@@ -36,6 +37,7 @@ body {
    font-size: 14px;
    line-height: 1.5;
 }
+
 button,
 input,
 select {
@@ -45,6 +47,7 @@ button,
 select {
    cursor: pointer;
 }
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
@@ -56,6 +59,7 @@ a {
    color: inherit;
    text-decoration: none;
 }
+
 h1,
 h2,
 h3,
@@ -76,6 +80,7 @@ h3 {
    margin-bottom: 6px;
    font-size: 0.9rem;
 }
+
 p {
    margin-bottom: 0;
 }
@@ -126,6 +131,7 @@ p {
    background: var(--sidebar);
    border-right: 1px solid var(--border);
 }
+
 .brand {
    display: flex;
    align-items: center;
@@ -166,8 +172,7 @@ p {
    font-size: 1.15rem;
    text-align: center;
 }
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
    background: var(--green-dark);
    color: var(--green);
 }
@@ -713,7 +718,6 @@ tbody tr:hover {
       grid-template-columns: minmax(0, 1fr);
    }
 }
-
 @media (max-width: 760px) {
    .sidebar {
       position: static;

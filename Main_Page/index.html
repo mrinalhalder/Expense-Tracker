@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>ExpenseTracker | Personal Finance</title>
+      <link rel="stylesheet" href="style.css" />
+      <script src="script.js" defer></script>
+   </head>
+   <body>
+      <div class="app-shell">
+         <aside class="sidebar">
+            <a class="brand" href="#" aria-label="ExpenseTracker home">
+               <span class="brand-icon">₹</span>
+               <span>Expense<span class="accent">Tracker</span></span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+               <a class="nav-link active" href="#overview"
+                  ><span>⌂</span> Home</a
+               >
+               <a class="nav-link" href="#transactions"
+                  ><span>▤</span> Transactions</a
+               >
+               <a class="nav-link" href="#reports"><span>▥</span> Reports</a>
+               <a class="nav-link" href="../Form_Page/form.html"
+                  ><span>⚙</span> Login</a
+               >
+            </nav>
+
+            <div class="sidebar-note">
+               <span class="note-icon">✦</span>
+               <p>Small steps today,<br />big goals tomorrow.</p>
+            </div>
+         </aside>
+
+         <main class="main-content" id="overview">
+            <header class="page-header">
+               <div>
+                  <p class="eyebrow">PERSONAL FINANCE</p>
+                  <h1>
+                     Good evening, Mrinal <span aria-hidden="true">👋</span>
+                  </h1>
+                  <p class="muted">Here's your expense summary.</p>
+               </div>
+               <label class="month-picker">
+                  <span aria-hidden="true">▦</span>
+                  <select id="month-filter" aria-label="Select month">
+                     <option value="2026-10">October 2026</option>
+                     <option value="2026-09">September 2026</option>
+                     <option value="2026-08">August 2026</option>
+                  </select>
+               </label>
+            </header>
+
+            <section class="summary-grid" aria-label="Financial overview">
+               <article class="summary-card balance-card">
+                  <div class="summary-top">
+                     <span class="summary-icon">₹</span>
+                     <div>
+                        <p class="muted">Total Balance</p>
+                        <h2 id="total-balance">₹ 12,450.00</h2>
+                     </div>
+                  </div>
+                  <p class="summary-foot">
+                     Income: <span class="positive">₹ 25,000</span
+                     ><span class="separator">·</span> Expenses:
+                     <span class="negative">₹ 12,550</span>
+                  </p>
+               </article>
+
+               <article class="summary-card income-card">
+                  <div class="summary-top">
+                     <span class="summary-icon">↗</span>
+                     <div>
+                        <p class="muted">Total Income</p>
+                        <h2 id="total-income">₹ 25,000.00</h2>
+                     </div>
+                  </div>
+                  <p class="summary-foot positive">↑ Income received</p>
+               </article>
+
+               <article class="summary-card expense-card">
+                  <div class="summary-top">
+                     <span class="summary-icon">↘</span>
+                     <div>
+                        <p class="muted">Total Expenses</p>
+                        <h2 id="total-expenses">₹ 12,550.00</h2>
+                     </div>
+                  </div>
+                  <p class="summary-foot negative">↑ Track your spending</p>
+               </article>
+            </section>
+
+            <section
+               class="panel transaction-form-panel"
+               aria-labelledby="form-title"
+            >
+               <div class="panel-heading">
+                  <div class="heading-title">
+                     <span class="heading-icon">＋</span>
+                     <div>
+                        <h2 id="form-title">Add New Transaction</h2>
+                        <p class="muted small">
+                           Record your income or expenses
+                        </p>
+                     </div>
+                  </div>
+                  <div
+                     class="type-switch"
+                     role="group"
+                     aria-label="Transaction type"
+                  >
+                     <button
+                        class="type-button selected"
+                        type="button"
+                        data-type="income"
+                     >
+                        Income
+                     </button>
+                     <button
+                        class="type-button"
+                        type="button"
+                        data-type="expense"
+                     >
+                        Expense
+                     </button>
+                  </div>
+               </div>
+
+               <form id="transaction-form">
+                  <div class="form-grid">
+                     <label class="field">
+                        <span>Amount (₹)</span>
+                        <input
+                           id="amount"
+                           name="amount"
+                           type="number"
+                           min="0.01"
+                           step="0.01"
+                           placeholder="Enter amount"
+                           required
+                        />
+                     </label>
+                     <label class="field">
+                        <span>Category</span>
+                        <select id="category" name="category" required>
+                           <option value="">Select category</option>
+                           <option>Salary</option>
+                           <option>Freelance</option>
+                           <option>Food & Dining</option>
+                           <option>Shopping</option>
+                           <option>Transport</option>
+                           <option>Bills & Utilities</option>
+                           <option>Entertainment</option>
+                           <option>Health</option>
+                           <option>Education</option>
+                           <option>Other</option>
+                        </select>
+                     </label>
+                     <label class="field">
+                        <span>Date</span>
+                        <input id="date" name="date" type="date" required />
+                     </label>
+                     <label class="field">
+                        <span
+                           >Description
+                           <span class="muted">(optional)</span></span
+                        >
+                        <input
+                           id="description"
+                           name="description"
+                           type="text"
+                           maxlength="100"
+                           placeholder="Add a note..."
+                        />
+                     </label>
+                  </div>
+                  <div class="form-actions">
+                     <button class="primary-button" type="submit">
+                        ＋ Add Transaction
+                     </button>
+                  </div>
+               </form>
+            </section>
+
+            <section
+               class="panel transactions-panel"
+               id="transactions"
+               aria-labelledby="transactions-title"
+            >
+               <div class="panel-heading transactions-heading">
+                  <div class="heading-title">
+                     <span class="heading-icon">☷</span>
+                     <div>
+                        <h2 id="transactions-title">Recent Transactions</h2>
+                        <p class="muted small">
+                           Review and manage your activity
+                        </p>
+                     </div>
+                  </div>
+                  <label class="sort-control">
+                     <span class="sr-only">Sort transactions</span>
+                     <select id="sort-order">
+                        <option value="newest">Latest first</option>
+                        <option value="oldest">Oldest first</option>
+                        <option value="highest">Amount: high to low</option>
+                        <option value="lowest">Amount: low to high</option>
+                     </select>
+                  </label>
+               </div>
+
+               <div class="toolbar">
+                  <label class="search-box">
+                     <span aria-hidden="true">⌕</span>
+                     <input
+                        id="search"
+                        type="search"
+                        placeholder="Search transactions..."
+                        aria-label="Search transactions"
+                     />
+                  </label>
+                  <label class="category-filter">
+                     <span class="muted small">Category</span>
+                     <select id="category-filter">
+                        <option value="all">All categories</option>
+                        <option>Salary</option>
+                        <option>Freelance</option>
+                        <option>Food & Dining</option>
+                        <option>Shopping</option>
+                        <option>Transport</option>
+                        <option>Bills & Utilities</option>
+                        <option>Entertainment</option>
+                        <option>Health</option>
+                        <option>Education</option>
+                        <option>Other</option>
+                     </select>
+                  </label>
+               </div>
+
+               <div class="table-wrap">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Date</th>
+                           <th>Description</th>
+                           <th>Category</th>
+                           <th>Amount</th>
+                           <th>Actions</th>
+                        </tr>
+                     </thead>
+                     <tbody id="transaction-list">
+                        <tr class="empty-row">
+                           <td colspan="5">
+                              Your transactions will appear here.
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="table-footer">
+                  <span class="muted small" id="transaction-count"
+                     >0 transactions</span
+                  >
+                  <div class="pagination" aria-label="Transaction pagination">
+                     <button
+                        type="button"
+                        id="previous-page"
+                        disabled
+                        aria-label="Previous page"
+                     >
+                        ←
+                     </button>
+                     <span id="current-page">1</span>
+                     <button
+                        type="button"
+                        id="next-page"
+                        disabled
+                        aria-label="Next page"
+                     >
+                        →
+                     </button>
+                  </div>
+               </div>
+            </section>
+
+            <section class="lower-grid" id="reports">
+               <article class="panel chart-panel">
+                  <div class="panel-heading">
+                     <div class="heading-title">
+                        <span class="heading-icon">▥</span>
+                        <h2>Income vs Expenses</h2>
+                     </div>
+                     <div class="chart-legend">
+                        <span><i class="legend-dot income-dot"></i> Income</span
+                        ><span
+                           ><i class="legend-dot expense-dot"></i>
+                           Expenses</span
+                        >
+                     </div>
+                  </div>
+                  <div
+                     class="chart-placeholder"
+                     role="img"
+                     aria-label="Placeholder for income versus expenses chart"
+                  >
+                     <div class="chart-y-labels">
+                        <span>₹30k</span><span>₹20k</span><span>₹10k</span
+                        ><span>₹0</span>
+                     </div>
+                     <div class="chart-area">
+                        <div class="chart-grid-lines">
+                           <i></i><i></i><i></i><i></i>
+                        </div>
+                        <div class="bar-groups">
+                           <div class="bar-group">
+                              <div class="bar-pair">
+                                 <i
+                                    class="bar income-bar"
+                                    style="height: 48%"
+                                 ></i
+                                 ><i
+                                    class="bar expense-bar"
+                                    style="height: 32%"
+                                 ></i>
+                              </div>
+                              <span>Jul</span>
+                           </div>
+                           <div class="bar-group">
+                              <div class="bar-pair">
+                                 <i
+                                    class="bar income-bar"
+                                    style="height: 44%"
+                                 ></i
+                                 ><i
+                                    class="bar expense-bar"
+                                    style="height: 28%"
+                                 ></i>
+                              </div>
+                              <span>Aug</span>
+                           </div>
+                           <div class="bar-group">
+                              <div class="bar-pair">
+                                 <i
+                                    class="bar income-bar"
+                                    style="height: 46%"
+                                 ></i
+                                 ><i
+                                    class="bar expense-bar"
+                                    style="height: 36%"
+                                 ></i>
+                              </div>
+                              <span>Sep</span>
+                           </div>
+                           <div class="bar-group">
+                              <div class="bar-pair">
+                                 <i
+                                    class="bar income-bar"
+                                    style="height: 78%"
+                                 ></i
+                                 ><i
+                                    class="bar expense-bar"
+                                    style="height: 42%"
+                                 ></i>
+                              </div>
+                              <span>Oct</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <p class="muted small chart-note">
+                     Chart placeholder — connect your transaction data with
+                     JavaScript.
+                  </p>
+               </article>
+
+               <aside class="panel side-summary">
+                  <div class="panel-heading">
+                     <div class="heading-title">
+                        <span class="heading-icon">◔</span>
+                        <h2>Monthly Summary</h2>
+                     </div>
+                  </div>
+                  <p class="muted small">Your spending breakdown</p>
+                  <div class="donut-wrap">
+                     <div class="donut-chart">
+                        <div class="donut-center">
+                           <strong id="donut-total">₹12,550</strong
+                           ><span>Total expenses</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="legend-list">
+                     <div>
+                        <span><i class="legend-dot income-dot"></i> Income</span
+                        ><strong class="positive">₹25,000</strong>
+                     </div>
+                     <div>
+                        <span
+                           ><i class="legend-dot expense-dot"></i>
+                           Expenses</span
+                        ><strong class="negative">₹12,550</strong>
+                     </div>
+                  </div>
+                  <div class="tip-box">
+                     <span class="tip-icon">✧</span>
+                     <div>
+                        <h3>Quick Tip</h3>
+                        <p class="muted small">
+                           Review your spending regularly to build better money
+                           habits.
+                        </p>
+                     </div>
+                  </div>
+               </aside>
+            </section>
+
+            <footer class="page-footer muted small">
+               Built to learn JavaScript, one feature at a time.
+            </footer>
+         </main>
+      </div>
+   </body>
+</html>
