@@ -5,7 +5,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>ExpenseTracker | Personal Finance</title>
       <link rel="stylesheet" href="style.css" />
-      <script src="script.js" defer></script>
    </head>
    <body>
       <div class="app-shell">
@@ -23,7 +22,7 @@
                   ><span>▤</span> Transactions</a
                >
                <a class="nav-link" href="#reports"><span>▥</span> Reports</a>
-               <a class="nav-link" href="../Form_Page/form.html"
+               <a class="nav-link" href="/Form_Page/form.html"
                   ><span>⚙</span> Login</a
                >
             </nav>
@@ -39,7 +38,8 @@
                <div>
                   <p class="eyebrow">PERSONAL FINANCE</p>
                   <h1>
-                     Good evening, Mrinal <span aria-hidden="true">👋</span>
+                     <span id="greetingText">Good evening, Mrinal</span
+                     ><span aria-hidden="true">👋</span>
                   </h1>
                   <p class="muted">Here's your expense summary.</p>
                </div>
@@ -53,7 +53,11 @@
                </label>
             </header>
 
-            <section class="summary-grid" aria-label="Financial overview">
+            <section
+               id="balanceSection"
+               class="summary-grid"
+               aria-label="Financial overview"
+            >
                <article class="summary-card balance-card">
                   <div class="summary-top">
                      <span class="summary-icon">₹</span>
@@ -63,9 +67,13 @@
                      </div>
                   </div>
                   <p class="summary-foot">
-                     Income: <span class="positive">₹ 25,000</span
+                     Income:
+                     <span id="total_income" class="positive total_income"
+                        >₹ 25,000</span
                      ><span class="separator">·</span> Expenses:
-                     <span class="negative">₹ 12,550</span>
+                     <span id="total_expenses" class="negative total_expenses"
+                        >₹ 12,550</span
+                     >
                   </p>
                </article>
 
@@ -74,7 +82,9 @@
                      <span class="summary-icon">↗</span>
                      <div>
                         <p class="muted">Total Income</p>
-                        <h2 id="total-income">₹ 25,000.00</h2>
+                        <h2 class="total_income" id="total-income">
+                           ₹ 25,000.00
+                        </h2>
                      </div>
                   </div>
                   <p class="summary-foot positive">↑ Income received</p>
@@ -85,7 +95,9 @@
                      <span class="summary-icon">↘</span>
                      <div>
                         <p class="muted">Total Expenses</p>
-                        <h2 id="total-expenses">₹ 12,550.00</h2>
+                        <h2 class="total_expenses" id="total-expenses">
+                           ₹ 12,550.00
+                        </h2>
                      </div>
                   </div>
                   <p class="summary-foot negative">↑ Track your spending</p>
@@ -420,5 +432,7 @@
             </footer>
          </main>
       </div>
+
+      <script type="module" src="./script.js"></script>
    </body>
 </html>
