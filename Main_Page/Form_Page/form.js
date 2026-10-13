@@ -65,7 +65,6 @@ function storeData(e) {
    console.log(user.userIncome);
 
    localStorage.setItem(key, JSON.stringify(user));
-
    showSuccessMessage();
 }
 
