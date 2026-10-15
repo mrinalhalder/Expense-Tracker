@@ -15,14 +15,16 @@
             </a>
 
             <nav class="main-nav" aria-label="Main navigation">
-               <a class="nav-link active" href="#overview"
+               <a id="home" class="nav-link active" href="#overview"
                   ><span>⌂</span> Home</a
                >
-               <a class="nav-link" href="#transactions"
+               <a id="transactionsLink" class="nav-link" href="#transactions"
                   ><span>▤</span> Transactions</a
                >
-               <a class="nav-link" href="#reports"><span>▥</span> Reports</a>
-               <a class="nav-link" href="./Form_Page/form.html"
+               <a id="reportsLink" class="nav-link" href="#reports"
+                  ><span>▥</span> Reports</a
+               >
+               <a id="login" class="nav-link" href="/Login_Page/login.html"
                   ><span>⚙</span> Login</a
                >
             </nav>
@@ -124,6 +126,7 @@
                      aria-label="Transaction type"
                   >
                      <button
+                        id="incomeBtn"
                         class="type-button selected"
                         type="button"
                         data-type="income"
@@ -131,6 +134,7 @@
                         Income
                      </button>
                      <button
+                        id="expenseBtn"
                         class="type-button"
                         type="button"
                         data-type="expense"
@@ -433,6 +437,7 @@
          </main>
       </div>
 
-      <script type="module" src="./script.js"></script>
+      <script type="module" src="./Js/script.js"></script>
+      <script src="./Js/uiModification.js"></script>
    </body>
 </html>
