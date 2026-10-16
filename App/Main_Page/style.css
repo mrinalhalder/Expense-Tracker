@@ -172,11 +172,13 @@ p {
    font-size: 1.15rem;
    text-align: center;
 }
+
 .nav-link:hover,
 .active {
    background: var(--green-dark);
    color: var(--green);
 }
+
 .sidebar-note {
    display: flex;
    align-items: flex-start;
