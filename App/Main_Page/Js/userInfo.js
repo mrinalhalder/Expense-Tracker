@@ -1,31 +1,16 @@
-const home = document.querySelector('.nav-link[href="#overview"]');
-const transactions = document.querySelector("#transactionsLink");
-const reports = document.querySelector("#reportsLink");
-const login = document.querySelector("#login");
+const key = "userInfo";
+const userData = JSON.parse(localStorage.getItem(key));
 
-export let clickBtn = "income";
+export let hasUserData = false;
+export let getIncome;
+export let getCurrentBalance;
+export const getExpenses = () => 0;
+export let getName;
 
-function removeActiveAttribute() {
-   home.classList.remove("active");
+if (userData) {
+   hasUserData = true;
+   getName = () => userData.userName;
+
+   getIncome = () => userData.userIncome;
+   getCurrentBalance = () => getIncome() - getExpenses();
 }
-
-transactions.addEventListener("click", removeActiveAttribute);
-
-reports.addEventListener("click", removeActiveAttribute);
-
-login.addEventListener("click", removeActiveAttribute);
-
-const incomeBtn = document.querySelector("#incomeBtn");
-const expenseBtn = document.querySelector("#expenseBtn");
-
-incomeBtn.addEventListener("click", () => {
-   incomeBtn.classList.add("selected");
-   expenseBtn.classList.remove("selected");
-   clickBtn = "income";
-});
-
-expenseBtn.addEventListener("click", () => {
-   expenseBtn.classList.add("selected");
-   incomeBtn.classList.remove("selected");
-   clickBtn = "expense";
-});
