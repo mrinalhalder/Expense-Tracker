@@ -14,8 +14,6 @@ function storeData(e) {
    let name = nameSection.value;
    let income = incomeSection.value;
 
-   console.log("form submitted");
-
    if (!verifyName(name)) {
       alert("Please Enter a valid Name");
       return;
@@ -36,11 +34,10 @@ function storeData(e) {
 
    localStorage.setItem(key, JSON.stringify(user));
    showSuccessMessage();
+   console.log("form submitted");
 }
 
 form.addEventListener("submit", storeData);
-
-const formContainer = document.querySelector(".page-container");
 
 function showSuccessMessage() {
    formContainer.innerHTML = `
