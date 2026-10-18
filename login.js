@@ -1,4 +1,4 @@
-import { verifyName, verifyIncome } from "../Validation/validation.js";
+import { verifyName, verifyIncome } from "./validation.js";
 
 console.log("hello js");
 
@@ -38,6 +38,7 @@ function storeData(e) {
 }
 
 form.addEventListener("submit", storeData);
+const formContainer = document.querySelector(".page-container");
 
 function showSuccessMessage() {
    formContainer.innerHTML = `
@@ -51,7 +52,7 @@ function showSuccessMessage() {
         You're ready to manage your expenses.
       </p>
 
-      <a href="../Main_Page/index.html" class="home-btn">
+      <a href="index.html" class="home-btn">
         Back to Dashboard →
       </a>
     </div>

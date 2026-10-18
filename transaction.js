@@ -4,7 +4,7 @@ import {
    verifyDate,
    verifyCategory,
    verifyDescription,
-} from "/App/Validation/validation.js";
+} from "./validation.js";
 
 const form = document.querySelector("#transaction-form");
 const amount = document.querySelector("#amount");
