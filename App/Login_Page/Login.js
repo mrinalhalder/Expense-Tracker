@@ -1,4 +1,4 @@
-import { verifyName, verifyIncome } from "/App/Validation/validation.js";
+import { verifyName, verifyIncome } from "../Validation/validation.js";
 
 console.log("hello js");
 
@@ -54,7 +54,7 @@ function showSuccessMessage() {
         You're ready to manage your expenses.
       </p>
 
-      <a href="/App/Main_Page/index.html" class="home-btn">
+      <a href="../Main_Page/index.html" class="home-btn">
         Back to Dashboard →
       </a>
     </div>
