@@ -52,7 +52,7 @@ function showSuccessMessage() {
         You're ready to manage your expenses.
       </p>
 
-      <a href="index.html" class="home-btn">
+      <a href="./index.html" class="home-btn">
         Back to Dashboard →
       </a>
     </div>
