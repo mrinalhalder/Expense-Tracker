@@ -1,5 +1,10 @@
 import { clickBtn } from "./uiModification.js";
 import {
+   addTransactionRow,
+   count,
+   addTransactionCount,
+} from "./viewTransaction.js";
+import {
    verifyIncome,
    verifyDate,
    verifyCategory,
@@ -14,7 +19,7 @@ const description = document.querySelector("#description");
 const TRANSACTION_KEY = "transactionData";
 
 const pastData = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
-console.log(pastData);
+let transactionCount = count;
 
 function validationProcess() {
    const amountData = verifyIncome(amount.value);
@@ -54,6 +59,10 @@ function saveData(amount, category, date, description) {
       list.push(transaction);
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
       form.reset();
+
+      transactionCount++;
+      addTransactionRow(transaction);
+      addTransactionCount(transactionCount);
    } catch (err) {
       alert("Could not save data");
    }

@@ -11,9 +11,6 @@ const totalIncome = document.querySelectorAll(".total_income");
 const totalBalance = document.querySelector("#total-balance");
 const totalExpenses = document.querySelectorAll(".total_expenses");
 
-// console.log(userData);
-localStorage.clear();
-
 const now = new Date();
 const hours = now.getHours();
 

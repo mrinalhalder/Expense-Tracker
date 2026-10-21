@@ -515,6 +515,31 @@ tbody tr:hover {
    cursor: not-allowed;
 }
 
+.action-buttons {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+}
+
+.action-buttons button {
+   border: none;
+   background: transparent;
+   padding: 6px;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: background 0.2s ease;
+}
+
+.edit-btn:hover {
+   background: #e0f2fe;
+}
+
+.delete-btn:hover {
+   background: #fee2e2;
+}
+
 /* ---------- Charts / monthly summary ---------- */
 .lower-grid {
    display: grid;
