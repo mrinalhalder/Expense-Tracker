@@ -10,6 +10,7 @@ import {
    verifyCategory,
    verifyDescription,
 } from "./validation.js";
+import { income, expense, showBalanceDetails } from "./script.js";
 
 const form = document.querySelector("#transaction-form");
 const amount = document.querySelector("#amount");
@@ -63,6 +64,19 @@ function saveData(amount, category, date, description) {
       transactionCount++;
       addTransactionRow(transaction);
       addTransactionCount(transactionCount);
+
+      let showIncome = income;
+      let showExpense = expense;
+
+      if (transaction.type === "income") {
+         showIncome += transaction.amount;
+      } else {
+         showExpense += transaction.amount;
+      }
+
+      let currentBalance = showIncome - showExpense;
+
+      showBalanceDetails(showIncome, showExpense, currentBalance);
    } catch (err) {
       alert("Could not save data");
    }

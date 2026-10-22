@@ -1,7 +1,5 @@
 import { verifyName, verifyIncome } from "./validation.js";
 
-console.log("hello js");
-
 const form = document.querySelector("#income-form");
 const nameSection = document.querySelector("#name");
 const incomeSection = document.querySelector("#income");

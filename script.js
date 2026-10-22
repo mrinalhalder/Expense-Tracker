@@ -7,18 +7,22 @@ import {
 } from "./userInfo.js";
 
 const greetingText = document.querySelector("#greetingText");
-const totalIncome = document.querySelectorAll(".total_income");
-const totalBalance = document.querySelector("#total-balance");
-const totalExpenses = document.querySelectorAll(".total_expenses");
+export const totalIncome = document.querySelectorAll(".total_income");
+export const totalBalance = document.querySelector("#total-balance");
+export const totalExpenses = document.querySelectorAll(".total_expenses");
 
 const now = new Date();
 const hours = now.getHours();
 
+export let income = 0;
+export let expense = 0;
+let currentBalance = 0;
+
 if (hasUserData) {
    const name = getName();
-   const income = getIncome();
-   const expense = getExpenses();
-   const currentBalance = getCurrentBalance();
+   income = getIncome();
+   expense = getExpenses();
+   currentBalance = getCurrentBalance();
 
    showGreeting(name);
    showBalanceDetails(income, expense, currentBalance);
@@ -36,7 +40,7 @@ function showGreeting(name) {
    }
 }
 
-function showBalanceDetails(income, expense, currentBalance) {
+export function showBalanceDetails(income, expense, currentBalance) {
    totalBalance.textContent = `₹ ${currentBalance}`;
    totalIncome.forEach((item) => {
       item.textContent = `₹ ${income}`;
