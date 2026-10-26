@@ -540,6 +540,16 @@ tbody tr:hover {
    background: #fee2e2;
 }
 
+.text-green {
+   color: #22c55e; /* Green color */
+   font-weight: 600;
+}
+
+.text-red {
+   color: #ef4444; /* Red color */
+   font-weight: 600;
+}
+
 /* ---------- Charts / monthly summary ---------- */
 .lower-grid {
    display: grid;

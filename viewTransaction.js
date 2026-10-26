@@ -24,25 +24,21 @@ const transactionCount = document.querySelector("#transaction-count");
 
 export let count = DATA.length;
 
-console.log(DATA);
-console.log(orderType);
-console.log(category);
-console.log(searchItem);
-console.log(transactionCount);
-console.log(count);
-console.log(expenses);
-
 function viewTransaction() {
    tableBody.innerHTML = "";
    DATA.forEach((item) => {
       addTransactionRow(item);
-      addTransactionCount(count);
    });
 }
 
 viewTransaction();
+addTransactionCount(count);
 
 export function addTransactionRow(item) {
+   const isIncome = item.type === "income";
+   const sign = isIncome ? "+" : "-";
+   const amountClass = isIncome ? "text-green" : "text-red";
+
    tableBody.insertAdjacentHTML(
       "beforeend",
       `
@@ -50,7 +46,7 @@ export function addTransactionRow(item) {
         <td>${item.date}</td>
         <td>${item.description}</td>
         <td>${item.category}</td>
-        <td>${item.amount}</td>
+        <td class="${amountClass}">${sign} ₹${item.amount}</td>
         <td class="action-buttons">
           <button
             type="button"
@@ -69,6 +65,9 @@ export function addTransactionRow(item) {
       </tr>
     `,
    );
+
+   console.log(item);
+   console.log(sign);
 }
 
 export function addTransactionCount(count) {
