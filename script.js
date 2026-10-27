@@ -5,6 +5,7 @@ import {
    getCurrentBalance,
    getExpenses,
 } from "./userInfo.js";
+import { getBalanceSummary } from "./viewTransaction.js";
 
 const greetingText = document.querySelector("#greetingText");
 export const totalIncome = document.querySelectorAll(".total_income");
@@ -41,6 +42,7 @@ function showGreeting(name) {
 }
 
 export function showBalanceDetails(income, expense, currentBalance) {
+   getBalanceSummary(income, expense, currentBalance);
    totalBalance.textContent = `₹ ${currentBalance}`;
    totalIncome.forEach((item) => {
       item.textContent = `₹ ${income}`;

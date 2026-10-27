@@ -1,7 +1,10 @@
 import { incomeSum, expenseSum } from "./viewTransaction.js";
 
 const key = "userInfo";
-const userData = JSON.parse(localStorage.getItem(key));
+export const userData = JSON.parse(localStorage.getItem(key));
+
+console.log(userData);
+console.log(expenseSum);
 
 export let hasUserData = false;
 export let getIncome;

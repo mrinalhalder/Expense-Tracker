@@ -24,14 +24,14 @@ const transactionCount = document.querySelector("#transaction-count");
 
 export let count = DATA.length;
 
-function viewTransaction() {
+export function viewTransaction(DATA, tableBody) {
    tableBody.innerHTML = "";
    DATA.forEach((item) => {
       addTransactionRow(item);
    });
 }
 
-viewTransaction();
+viewTransaction(DATA, tableBody);
 addTransactionCount(count);
 
 export function addTransactionRow(item) {
@@ -65,11 +65,26 @@ export function addTransactionRow(item) {
       </tr>
     `,
    );
-
-   console.log(item);
-   console.log(sign);
 }
 
 export function addTransactionCount(count) {
    transactionCount.innerText = `${count}`;
+}
+
+export function getBalanceSummary(income, expense, currentBalance) {
+   const data = JSON.parse(localStorage.getItem(TRANSACTION_KEY));
+
+   data.forEach((item) => {
+      if (item.type === "income") {
+         income += item.amount;
+      }
+   });
+
+   data.forEach((item) => {
+      if (item.type === "expense") {
+         expense += item.amount;
+      }
+   });
+
+   currentBalance = income - expense;
 }

@@ -1,8 +1,8 @@
 import { clickBtn } from "./uiModification.js";
 import {
    addTransactionRow,
-   count,
    addTransactionCount,
+   getBalanceSummary,
 } from "./viewTransaction.js";
 import {
    verifyIncome,
@@ -10,7 +10,8 @@ import {
    verifyCategory,
    verifyDescription,
 } from "./validation.js";
-import { income, expense, showBalanceDetails } from "./script.js";
+import { showBalanceDetails } from "./script.js";
+import { userData } from "./userInfo.js";
 
 const form = document.querySelector("#transaction-form");
 const amount = document.querySelector("#amount");
@@ -20,7 +21,6 @@ const description = document.querySelector("#description");
 const TRANSACTION_KEY = "transactionData";
 
 const pastData = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
-let transactionCount = count;
 
 function validationProcess() {
    const amountData = verifyIncome(amount.value);
@@ -58,25 +58,28 @@ function saveData(amount, category, date, description) {
    try {
       const list = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
       list.push(transaction);
+
+      addTransactionRow(transaction);
+      addTransactionCount(list.length);
+
+      let totalIncome = userData.userIncome;
+      let totalExpense = 0;
+      console.log(totalIncome);
+
+      list.forEach((item) => {
+         if (item.type === "income") {
+            totalIncome += Number(item.amount);
+         } else if (item.type === "expense") {
+            totalExpense += Number(item.amount);
+         }
+      });
+
+      const currentBalance = totalIncome - totalExpense;
+
+      showBalanceDetails(totalIncome, totalExpense, currentBalance);
+
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
       form.reset();
-
-      transactionCount++;
-      addTransactionRow(transaction);
-      addTransactionCount(transactionCount);
-
-      let showIncome = income;
-      let showExpense = expense;
-
-      if (transaction.type === "income") {
-         showIncome += transaction.amount;
-      } else {
-         showExpense += transaction.amount;
-      }
-
-      let currentBalance = showIncome - showExpense;
-
-      showBalanceDetails(showIncome, showExpense, currentBalance);
    } catch (err) {
       alert("Could not save data");
    }
