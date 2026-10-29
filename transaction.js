@@ -64,7 +64,6 @@ function saveData(amount, category, date, description) {
 
       let totalIncome = userData.userIncome;
       let totalExpense = 0;
-      console.log(totalIncome);
 
       list.forEach((item) => {
          if (item.type === "income") {

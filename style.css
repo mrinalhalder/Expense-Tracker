@@ -866,3 +866,138 @@ tbody tr:hover {
       transition-duration: 0.01ms !important;
    }
 }
+
+/* Modal Overlay Background */
+.modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.4);
+   backdrop-filter: blur(5px);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+}
+
+/* Hidden Class to toggle visibility */
+.modal-overlay.hidden {
+   display: none;
+}
+
+/* Modal Box */
+.modal-content {
+   background: #212121;
+   width: 100%;
+   max-width: 400px;
+   border-radius: 12px;
+   padding: 20px 24px;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+   animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+   from {
+      opacity: 0;
+      transform: translateY(-20px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* Modal Header */
+.modal-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+   border-bottom: 1px solid #eee;
+   padding-bottom: 10px;
+}
+
+.modal-header h3 {
+   margin: 0;
+   font-size: 1.25rem;
+   color: #f1f1f1;
+}
+
+.close-btn {
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   cursor: pointer;
+   color: #888;
+}
+
+.close-btn:hover {
+   color: #ccc;
+}
+
+/* Form Groups inside Modal */
+.form-group {
+   margin-bottom: 15px;
+}
+
+.form-group label {
+   display: block;
+   font-size: 0.85rem;
+   font-weight: 600;
+   color: #555;
+   margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+   width: 100%;
+   padding: 10px 12px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   font-size: 0.95rem;
+   outline: none;
+   transition: border-color 0.2s;
+   box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+   border-color: #4f46e5;
+}
+
+/* Action Buttons */
+.modal-actions {
+   display: flex;
+   gap: 10px;
+   margin-top: 20px;
+}
+
+.btn {
+   flex: 1;
+   padding: 10px;
+   border: none;
+   border-radius: 8px;
+   font-weight: 600;
+   cursor: pointer;
+   font-size: 0.95rem;
+}
+
+.btn-secondary {
+   background: #f3f4f6;
+   color: #4b5563;
+}
+
+.btn-secondary:hover {
+   background: #e5e7eb;
+}
+
+.btn-primary {
+   background: #4f46e5;
+   color: #ffffff;
+}
+
+.btn-primary:hover {
+   background: #4338ca;
+}

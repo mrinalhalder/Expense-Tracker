@@ -8,9 +8,12 @@ import {
 import { getBalanceSummary } from "./viewTransaction.js";
 
 const greetingText = document.querySelector("#greetingText");
-export const totalIncome = document.querySelectorAll(".total_income");
+const subTotalIncome = document.querySelector("#total_income");
+const subTotalExpenses = document.querySelector("#total_expenses");
+
 export const totalBalance = document.querySelector("#total-balance");
-export const totalExpenses = document.querySelectorAll(".total_expenses");
+export const totalIncome = document.querySelector("#total-income");
+export const totalExpenses = document.querySelector("#total-expenses");
 
 const now = new Date();
 const hours = now.getHours();
@@ -42,13 +45,10 @@ function showGreeting(name) {
 }
 
 export function showBalanceDetails(income, expense, currentBalance) {
-   getBalanceSummary(income, expense, currentBalance);
    totalBalance.textContent = `₹ ${currentBalance}`;
-   totalIncome.forEach((item) => {
-      item.textContent = `₹ ${income}`;
-   });
+   subTotalIncome.textContent = `₹ ${income}`;
+   subTotalExpenses.textContent = `₹ ${expense}`;
 
-   totalExpenses.forEach((item) => {
-      item.textContent = `₹ ${expense}`;
-   });
+   totalIncome.textContent = `₹ ${income}`;
+   totalExpenses.textContent = `₹ ${expense}`;
 }

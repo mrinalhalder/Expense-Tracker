@@ -6,6 +6,8 @@ const tableBody = document.querySelector("#transaction-list");
 
 const DATA = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
 
+console.log(DATA);
+
 export let expenseSum = 0;
 export let incomeSum = 0;
 
@@ -13,11 +15,11 @@ const expenses = DATA.filter((item) => item.type === "expense");
 const incomes = DATA.filter((item) => item.type === "income");
 
 expenses.forEach((item) => {
-   expenseSum += item.amount;
+   expenseSum += Number(item.amount);
 });
 
 incomes.forEach((item) => {
-   incomeSum += item.amount;
+   incomeSum += Number(item.amount);
 });
 
 const transactionCount = document.querySelector("#transaction-count");
@@ -76,13 +78,13 @@ export function getBalanceSummary(income, expense, currentBalance) {
 
    data.forEach((item) => {
       if (item.type === "income") {
-         income += item.amount;
+         income += Number(item.amount);
       }
    });
 
    data.forEach((item) => {
       if (item.type === "expense") {
-         expense += item.amount;
+         expense += Number(item.amount);
       }
    });
 
