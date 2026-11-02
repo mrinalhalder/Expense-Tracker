@@ -12,6 +12,7 @@ import {
 } from "./validation.js";
 import { showBalanceDetails } from "./script.js";
 import { userData } from "./userInfo.js";
+import { updateChartState } from "./chart.js";
 
 const form = document.querySelector("#transaction-form");
 const amount = document.querySelector("#amount");
@@ -79,6 +80,8 @@ function saveData(amount, category, date, description) {
 
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
       form.reset();
+
+      updateChartState();
    } catch (err) {
       alert("Could not save data");
    }

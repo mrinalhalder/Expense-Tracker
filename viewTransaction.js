@@ -6,8 +6,6 @@ const tableBody = document.querySelector("#transaction-list");
 
 const DATA = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
 
-console.log(DATA);
-
 export let expenseSum = 0;
 export let incomeSum = 0;
 
@@ -89,4 +87,5 @@ export function getBalanceSummary(income, expense, currentBalance) {
    });
 
    currentBalance = income - expense;
+   return data;
 }

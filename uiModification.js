@@ -41,8 +41,6 @@ expenseBtn.addEventListener("click", () => {
 const editModel = document.querySelector("#edit-modal");
 const app = document.querySelector(".app-shell");
 const form = document.querySelector("#edit-form");
-console.log(app);
-console.log(editModel);
 
 tableBody.addEventListener("click", (e) => {
    if (e.target.classList.contains("edit-btn")) {

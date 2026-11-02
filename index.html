@@ -6,6 +6,7 @@
       <title>ExpenseTracker | Personal Finance</title>
       <link rel="stylesheet" href="style.css" />
    </head>
+
    <body>
       <div class="app-shell">
          <aside class="sidebar">
@@ -304,86 +305,81 @@
                         <span class="heading-icon">▥</span>
                         <h2>Income vs Expenses</h2>
                      </div>
+
+                     <!-- 🧭 Navigation Buttons Added Here -->
+                     <div
+                        class="chart-nav-controls"
+                        style="display: flex; align-items: center; gap: 6px"
+                     >
+                        <button
+                           id="prev-chart"
+                           class="chart-nav-btn"
+                           title="Previous Months"
+                           style="
+                              background: transparent;
+                              border: 1px solid #334155;
+                              color: #94a3b8;
+                              padding: 2px 8px;
+                              cursor: pointer;
+                              border-radius: 4px;
+                              font-weight: bold;
+                              font-size: 12px;
+                           "
+                        >
+                           ◀
+                        </button>
+                        <button
+                           id="next-chart"
+                           class="chart-nav-btn"
+                           title="Next Months"
+                           style="
+                              background: transparent;
+                              border: 1px solid #334155;
+                              color: #94a3b8;
+                              padding: 2px 8px;
+                              cursor: pointer;
+                              border-radius: 4px;
+                              font-weight: bold;
+                              font-size: 12px;
+                           "
+                        >
+                           ▶
+                        </button>
+                     </div>
+
                      <div class="chart-legend">
-                        <span><i class="legend-dot income-dot"></i> Income</span
-                        ><span
+                        <span
+                           ><i class="legend-dot income-dot"></i> Income</span
+                        >
+                        <span
                            ><i class="legend-dot expense-dot"></i>
                            Expenses</span
                         >
                      </div>
                   </div>
+
                   <div
                      class="chart-placeholder"
                      role="img"
-                     aria-label="Placeholder for income versus expenses chart"
+                     aria-label="Income versus expenses chart"
                   >
-                     <div class="chart-y-labels">
-                        <span>₹30k</span><span>₹20k</span><span>₹10k</span
-                        ><span>₹0</span>
+                     <div id="chartLabels" class="chart-y-labels">
+                        <span>₹30k</span>
+                        <span>₹20k</span>
+                        <span>₹10k</span>
+                        <span>₹0</span>
                      </div>
                      <div class="chart-area">
                         <div class="chart-grid-lines">
                            <i></i><i></i><i></i><i></i>
                         </div>
-                        <div class="bar-groups">
-                           <div class="bar-group">
-                              <div class="bar-pair">
-                                 <i
-                                    class="bar income-bar"
-                                    style="height: 48%"
-                                 ></i
-                                 ><i
-                                    class="bar expense-bar"
-                                    style="height: 32%"
-                                 ></i>
-                              </div>
-                              <span>Jul</span>
-                           </div>
-                           <div class="bar-group">
-                              <div class="bar-pair">
-                                 <i
-                                    class="bar income-bar"
-                                    style="height: 44%"
-                                 ></i
-                                 ><i
-                                    class="bar expense-bar"
-                                    style="height: 28%"
-                                 ></i>
-                              </div>
-                              <span>Aug</span>
-                           </div>
-                           <div class="bar-group">
-                              <div class="bar-pair">
-                                 <i
-                                    class="bar income-bar"
-                                    style="height: 46%"
-                                 ></i
-                                 ><i
-                                    class="bar expense-bar"
-                                    style="height: 36%"
-                                 ></i>
-                              </div>
-                              <span>Sep</span>
-                           </div>
-                           <div class="bar-group">
-                              <div class="bar-pair">
-                                 <i
-                                    class="bar income-bar"
-                                    style="height: 78%"
-                                 ></i
-                                 ><i
-                                    class="bar expense-bar"
-                                    style="height: 42%"
-                                 ></i>
-                              </div>
-                              <span>Oct</span>
-                           </div>
-                        </div>
+
+                        <!-- Added ID here so JavaScript can dynamically render the 4 months bars -->
+                        <div class="bar-groups" id="bar-groups-container"></div>
                      </div>
                   </div>
                   <p class="muted small chart-note">
-                     Chart placeholder — connect your transaction data with
-                     JavaScript.
+                     Showing last 4 months transaction data dynamically.
                   </p>
                </article>
 
@@ -509,5 +505,6 @@
       <script src="./userInfo.js" type="module" charset="utf-8"></script>
       <script type="module" src="./viewTransaction.js"></script>
       <script type="module" src="./action.js"></script>
+      <script type="module" src="./chart.js"></script>
    </body>
 </html>

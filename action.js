@@ -5,6 +5,7 @@ import {
 } from "./viewTransaction.js";
 import { userData } from "./userInfo.js";
 import { showBalanceDetails } from "./script.js";
+import { updateChartState } from "./chart.js";
 
 const TRANSACTION_KEY = "transactionData";
 const tableBody = document.querySelector("#transaction-list");
@@ -12,8 +13,6 @@ const tableBody = document.querySelector("#transaction-list");
 tableBody.addEventListener("click", (e) => {
    if (e.target.classList.contains("delete-btn")) {
       const transactionId = e.target.dataset.id;
-
-      console.log("Clicked transaction ID:", transactionId);
       deleteTransaction(transactionId);
    }
 });
@@ -29,6 +28,7 @@ function deleteTransaction(id) {
    viewTransaction(newData, tableBody);
    addTransactionCount(newData.length);
    updateSummary(newData);
+   updateChartState();
 }
 
 function updateSummary(data) {
