@@ -6,6 +6,7 @@ import {
 import { userData } from "./userInfo.js";
 import { showBalanceDetails } from "./script.js";
 import { updateChartState } from "./chart.js";
+import { updateDonutChart } from "./summary.js";
 
 const TRANSACTION_KEY = "transactionData";
 const tableBody = document.querySelector("#transaction-list");
@@ -49,4 +50,5 @@ function updateSummary(data) {
 
    const currentBalance = income - expense;
    showBalanceDetails(income, expense, currentBalance);
+   updateDonutChart(income, expense);
 }

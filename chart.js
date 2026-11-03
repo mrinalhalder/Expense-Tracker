@@ -109,9 +109,9 @@ export function updateChartState() {
       }
    });
 
-   MAX_LIMIT = Math.round(MAX_LIMIT * (3.1 / 3));
-   const sndMaxLimit = Math.round(MAX_LIMIT * (2.1 / 3));
-   const thirdMaxLimit = Math.round(MAX_LIMIT * (1.1 / 3));
+   //MAX_LIMIT = Math.round(MAX_LIMIT * (3.1 / 3));
+   const sndMaxLimit = Math.round(MAX_LIMIT * (2 / 3));
+   const thirdMaxLimit = Math.round(MAX_LIMIT * (1 / 3));
 
    chartLabels.innerHTML = `
     <span>₹${MAX_LIMIT}</span>
@@ -124,9 +124,6 @@ export function updateChartState() {
    chartData.forEach((item) => {
       const incomeHeight = Math.min((item.income / MAX_LIMIT) * 100, 100);
       const expenseHeight = Math.min((item.expense / MAX_LIMIT) * 100, 100);
-
-      // console.log(incomeHeight);
-      // console.log(expenseHeight);
 
       chartPrevSection.insertAdjacentHTML(
          "beforeend",

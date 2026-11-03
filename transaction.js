@@ -13,6 +13,7 @@ import {
 import { showBalanceDetails } from "./script.js";
 import { userData } from "./userInfo.js";
 import { updateChartState } from "./chart.js";
+import { updateDonutChart } from "./summary.js";
 
 const form = document.querySelector("#transaction-form");
 const amount = document.querySelector("#amount");
@@ -77,6 +78,7 @@ function saveData(amount, category, date, description) {
       const currentBalance = totalIncome - totalExpense;
 
       showBalanceDetails(totalIncome, totalExpense, currentBalance);
+      updateDonutChart(totalIncome, totalExpense);
 
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
       form.reset();
