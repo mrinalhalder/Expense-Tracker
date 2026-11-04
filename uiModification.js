@@ -60,11 +60,6 @@ tableBody.addEventListener("click", (e) => {
       const date = document.querySelector("#edit-date");
       const description = document.querySelector("#edit-description");
 
-      console.log(amount);
-      console.log(transactionRow);
-      console.log(transactionID);
-      console.log(DATA);
-
       updateTransaction(
          amount,
          category,
@@ -96,9 +91,6 @@ function updateTransaction(
 
    const cancelBtn = document.querySelector("#cancel-edit-btn");
    const closeBtn = document.querySelector("#close-modal-btn");
-
-   console.log(cancelBtn);
-   console.log(closeBtn);
 
    cancelBtn.onclick = backMainFeature;
    closeBtn.onclick = backMainFeature;

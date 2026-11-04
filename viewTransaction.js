@@ -24,14 +24,18 @@ const transactionCount = document.querySelector("#transaction-count");
 
 export let count = DATA.length;
 
-export function viewTransaction(DATA, tableBody) {
+export function viewTransaction(type) {
+   const data = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
+   if (data.length === 0) return;
+
+   orderSort(type, data);
    tableBody.innerHTML = "";
-   DATA.forEach((item) => {
+   data.forEach((item) => {
       addTransactionRow(item);
    });
 }
 
-viewTransaction(DATA, tableBody);
+viewTransaction("newest");
 addTransactionCount(count);
 
 export function addTransactionRow(item) {
@@ -88,4 +92,59 @@ export function getBalanceSummary(income, expense, currentBalance) {
 
    currentBalance = income - expense;
    return data;
+}
+
+orderType.addEventListener("change", (e) => {
+   const value = orderType.value;
+   console.log("Selected Category:", value);
+   console.log(typeof value);
+
+   category.value = "all";
+   viewTransaction(value);
+   addTransactionCount(DATA.length);
+});
+
+category.addEventListener("change", (e) => {
+   const value = category.value;
+   if (value === "all") {
+      viewTransaction("newest");
+      addTransactionCount(DATA.length);
+      return;
+   }
+
+   const targetData = DATA.filter((item) => item.category === value);
+   viewCategoryTransaction("newest", targetData);
+   addTransactionCount(targetData.length);
+});
+
+export function orderSort(type, DATA) {
+   if (type === "newest") {
+      DATA.sort((a, b) => new Date(b.date) - new Date(a.date));
+   } else if (type === "oldest") {
+      DATA.sort((a, b) => new Date(a.date) - new Date(b.date));
+   } else if (type === "highest") {
+      DATA.sort((a, b) => {
+         const amountA =
+            a.type === "expense" ? -Number(a.amount) : Number(a.amount);
+         const amountB =
+            b.type === "expense" ? -Number(b.amount) : Number(b.amount);
+         return amountB - amountA;
+      });
+   } else if (type === "lowest") {
+      DATA.sort((a, b) => {
+         const amountA =
+            a.type === "expense" ? -Number(a.amount) : Number(a.amount);
+         const amountB =
+            b.type === "expense" ? -Number(b.amount) : Number(b.amount);
+         return amountA - amountB;
+      });
+   }
+}
+
+function viewCategoryTransaction(type, data) {
+   orderSort(type, data);
+   tableBody.innerHTML = "";
+   data.forEach((item) => {
+      addTransactionRow(item);
+   });
 }

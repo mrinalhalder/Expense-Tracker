@@ -26,7 +26,7 @@ function deleteTransaction(id) {
    const targetRow = document.querySelector(`tr[data-id="${id}"]`);
    if (targetRow) targetRow.remove();
 
-   viewTransaction(newData, tableBody);
+   viewTransaction("newest");
    addTransactionCount(newData.length);
    updateSummary(newData);
    updateChartState();

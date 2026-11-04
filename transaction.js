@@ -1,6 +1,6 @@
 import { clickBtn } from "./uiModification.js";
 import {
-   addTransactionRow,
+   viewTransaction,
    addTransactionCount,
    getBalanceSummary,
 } from "./viewTransaction.js";
@@ -59,10 +59,16 @@ function saveData(amount, category, date, description) {
 
    try {
       const list = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
-      list.push(transaction);
 
-      addTransactionRow(transaction);
-      addTransactionCount(list.length);
+      const insertIndex = list.findIndex(
+         (item) => new Date(item.date) > new Date(transaction.date),
+      );
+
+      if (insertIndex === -1) {
+         list.push(transaction);
+      } else {
+         list.splice(insertIndex, 0, transaction);
+      }
 
       let totalIncome = userData.userIncome;
       let totalExpense = 0;
@@ -83,6 +89,8 @@ function saveData(amount, category, date, description) {
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
       form.reset();
 
+      viewTransaction("newest");
+      addTransactionCount(list.length);
       updateChartState();
    } catch (err) {
       alert("Could not save data");
