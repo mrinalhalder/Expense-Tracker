@@ -29,6 +29,9 @@ export function viewTransaction(type) {
    if (data.length === 0) return;
 
    orderSort(type, data);
+   orderType.value = type;
+   category.value = "all";
+
    tableBody.innerHTML = "";
    data.forEach((item) => {
       addTransactionRow(item);
@@ -105,6 +108,8 @@ orderType.addEventListener("change", (e) => {
 });
 
 category.addEventListener("change", (e) => {
+   const DATA = JSON.parse(localStorage.getItem(TRANSACTION_KEY));
+
    const value = category.value;
    if (value === "all") {
       viewTransaction("newest");
