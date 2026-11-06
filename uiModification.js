@@ -2,9 +2,11 @@ import {
    addTransactionRow,
    addTransactionCount,
    getBalanceSummary,
+   getTargetTransaction,
 } from "./viewTransaction.js";
 import { showBalanceDetails } from "./script.js";
 import { userData } from "./userInfo.js";
+import { updateDonutChart } from "./summary.js";
 
 const home = document.querySelector('.nav-link[href="#overview"]');
 const transactions = document.querySelector("#transactionsLink");
@@ -113,23 +115,28 @@ function updateTransaction(
       localStorage.setItem(TRANSACTION_KEY, JSON.stringify(DATA));
       backMainFeature();
 
+      // Current Month Data
+      const newData = getTargetTransaction();
+
       let totalIncome = userData.userIncome || 0;
       let totalExpense = 0;
       tableBody.innerHTML = "";
 
-      DATA.forEach((item) => {
-         console.log("Type:", item.type, "Amount:", item.amount);
+      newData.forEach((item) => {
+         // console.log("Type:", item.type, "Amount:", item.amount);
          if (item.type === "income") {
             totalIncome += Number(item.amount);
          } else if (item.type === "expense") {
             totalExpense += Number(item.amount);
          }
-         addTransactionRow(item);
       });
 
       const currentBalance = totalIncome - totalExpense;
 
       showBalanceDetails(totalIncome, totalExpense, currentBalance);
+      updateDonutChart(totalIncome, totalExpense);
+      newData.forEach((item) => addTransactionRow(itme));
+      addTransactionCount(newData.length);
    };
 }
 

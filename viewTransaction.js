@@ -206,3 +206,19 @@ showBalanceDetails(income, expense, income - expense);
 updateDonutChart(income, expense);
 monthTransaction(data);
 addTransactionCount(data.length);
+
+searchItem.addEventListener("input", (e) => {
+   const query = e.target.value.toLowerCase().trim();
+   const currentData = getTargetTransaction();
+
+   const filteredData = currentData.filter((item) => {
+      return (
+         item.description.toLowerCase().includes(query) ||
+         item.category.toLowerCase().includes(query)
+      );
+   });
+
+   tableBody.innerHTML = "";
+   filteredData.forEach((item) => addTransactionRow(item));
+   addTransactionCount(filteredData.length);
+});
