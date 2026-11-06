@@ -1,11 +1,7 @@
-import { income, expense } from "./script.js";
-
 const donutChart = document.querySelector(".donut-chart");
 const totalAmount = document.querySelector("#donut-total");
 const incomeAmount = document.querySelector("#positive");
 const expenseAmount = document.querySelector("#negative");
-
-updateDonutChart(income, expense);
 
 export function updateDonutChart(income, expense) {
    let expensePercent = 0;

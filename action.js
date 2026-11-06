@@ -1,7 +1,8 @@
 import {
    viewTransaction,
    addTransactionCount,
-   count,
+   getTargetTransaction,
+   monthTransaction,
 } from "./viewTransaction.js";
 import { userData } from "./userInfo.js";
 import { showBalanceDetails } from "./script.js";
@@ -19,16 +20,18 @@ tableBody.addEventListener("click", (e) => {
 });
 
 function deleteTransaction(id) {
-   const currentDATA = JSON.parse(localStorage.getItem(TRANSACTION_KEY));
+   const currentDATA = JSON.parse(localStorage.getItem(TRANSACTION_KEY)) || [];
+
    const newData = currentDATA.filter((item) => item.id !== Number(id));
    localStorage.setItem(TRANSACTION_KEY, JSON.stringify(newData));
 
    const targetRow = document.querySelector(`tr[data-id="${id}"]`);
    if (targetRow) targetRow.remove();
 
-   viewTransaction("newest");
-   addTransactionCount(newData.length);
-   updateSummary(newData);
+   const monthData = getTargetTransaction();
+   monthTransaction(monthData);
+   addTransactionCount(monthData.length);
+   updateSummary(monthData);
    updateChartState();
 }
 

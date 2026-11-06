@@ -1,11 +1,5 @@
-import {
-   hasUserData,
-   getName,
-   getIncome,
-   getCurrentBalance,
-   getExpenses,
-} from "./userInfo.js";
-import { getBalanceSummary } from "./viewTransaction.js";
+import { hasUserData, getName, userData } from "./userInfo.js";
+import { updateDonutChart } from "./summary.js";
 
 const greetingText = document.querySelector("#greetingText");
 const subTotalIncome = document.querySelector("#total_income");
@@ -14,22 +8,40 @@ const subTotalExpenses = document.querySelector("#total_expenses");
 export const totalBalance = document.querySelector("#total-balance");
 export const totalIncome = document.querySelector("#total-income");
 export const totalExpenses = document.querySelector("#total-expenses");
+const TRANSACTION_KEY = "transactionData";
 
 const now = new Date();
 const hours = now.getHours();
 
-export let income = 0;
-export let expense = 0;
-let currentBalance = 0;
+// export let income = userData.userIncome;
+// export let expense = 0;
+
+//const currentMonthData = getTargetTransaction(TRANSACTION_KEY);
+
+// const expenses = currentMonthData.filter((item) => item.type === "expense");
+// const incomes = currentMonthData.filter((item) => item.type === "income");
+
+// console.log(currentMonthData);
 
 if (hasUserData) {
-   const name = getName();
-   income = getIncome();
-   expense = getExpenses();
-   currentBalance = getCurrentBalance();
+   const name = getName;
+
+   // expenses.forEach((item) => {
+   // expense += Number(item.amount);
+   // });
+
+   // incomes.forEach((item) => {
+   //    income += Number(item.amount);
+   // });
+
+   // const currentBalance = income - expense;
 
    showGreeting(name);
-   showBalanceDetails(income, expense, currentBalance);
+   document.addEventListener("monthDataChanged", (e) => {
+      const { income, expense, balance } = e.detail;
+      showBalanceDetails(income, expense, balance);
+      updateDonutChart(income, expense);
+   });
 }
 
 function showGreeting(name) {

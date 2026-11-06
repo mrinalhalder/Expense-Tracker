@@ -778,7 +778,7 @@ tbody tr:hover {
    width: 155px;
    aspect-ratio: 1;
    border-radius: 50%;
-   background: conic-gradient(var(--green) 0 66%, var(--red) 66% 100%);
+   background: conic-gradient(var(--green) 0 100%, var(--red) 66% 100%);
 }
 
 .donut-center {

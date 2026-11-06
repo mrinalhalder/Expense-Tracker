@@ -30,9 +30,6 @@ const chartPrevSection = document.querySelector("#bar-groups-container");
 let thisMonth = currentMonth;
 let thisYear = currentYear;
 
-// Initial Load
-updateChartState();
-
 prevBtn.addEventListener("click", (e) => {
    thisMonth--;
    if (thisMonth < 0) {
@@ -109,7 +106,6 @@ export function updateChartState() {
       }
    });
 
-   //MAX_LIMIT = Math.round(MAX_LIMIT * (3.1 / 3));
    const sndMaxLimit = Math.round(MAX_LIMIT * (2 / 3));
    const thirdMaxLimit = Math.round(MAX_LIMIT * (1 / 3));
 
@@ -145,3 +141,6 @@ export function updateChartState() {
       );
    });
 }
+
+// Initial Load
+updateChartState();

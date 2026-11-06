@@ -2,7 +2,7 @@ import { clickBtn } from "./uiModification.js";
 import {
    viewTransaction,
    addTransactionCount,
-   getBalanceSummary,
+   getTargetTransaction,
 } from "./viewTransaction.js";
 import {
    verifyIncome,
@@ -70,10 +70,15 @@ function saveData(amount, category, date, description) {
          list.splice(insertIndex, 0, transaction);
       }
 
+      localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
+      form.reset();
+
+      const newData = getTargetTransaction();
+
       let totalIncome = userData.userIncome;
       let totalExpense = 0;
 
-      list.forEach((item) => {
+      newData.forEach((item) => {
          if (item.type === "income") {
             totalIncome += Number(item.amount);
          } else if (item.type === "expense") {
@@ -86,11 +91,8 @@ function saveData(amount, category, date, description) {
       showBalanceDetails(totalIncome, totalExpense, currentBalance);
       updateDonutChart(totalIncome, totalExpense);
 
-      localStorage.setItem(TRANSACTION_KEY, JSON.stringify(list));
-      form.reset();
-
       viewTransaction("newest");
-      addTransactionCount(list.length);
+      addTransactionCount(newData.length);
       updateChartState();
    } catch (err) {
       alert("Could not save data");
